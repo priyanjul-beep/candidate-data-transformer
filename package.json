@@ -1,0 +1,42 @@
+{
+  "name": "candidate-data-transformer",
+  "version": "1.0.0",
+  "description": "Multi-source candidate data transformer - Eightfold assignment",
+  "main": "dist/run_pipeline.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/run_pipeline.js",
+    "cli": "node dist/run_pipeline.js",
+    "ui": "node dist/ui/server.js",
+    "test": "jest",
+    "dev": "ts-node src/run_pipeline.ts"
+  },
+  "keywords": [
+    "candidate",
+    "data",
+    "transformer",
+    "merge"
+  ],
+  "author": "Priya N J",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.0.0",
+    "csv-parse": "^7.0.0",
+    "ejs": "^3.1.10",
+    "express": "^4.18.2",
+    "multer": "^2.2.0",
+    "papaparse": "^5.5.4"
+  },
+  "devDependencies": {
+    "@types/ejs": "^3.1.5",
+    "@types/express": "^5.0.6",
+    "@types/jest": "^29.5.0",
+    "@types/multer": "^2.1.0",
+    "@types/node": "^20.0.0",
+    "@types/papaparse": "^5.5.2",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  }
+}

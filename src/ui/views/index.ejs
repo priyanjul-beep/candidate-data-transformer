@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Candidate Data Transformer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; background: #f5f5f5; padding: 20px; }
+    .container { max-width: 1400px; margin: 0 auto; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center; }
+    h1 { font-size: 28px; margin-bottom: 8px; }
+    .subtitle { opacity: 0.9; font-size: 14px; }
+    main { padding: 30px; }
+    .section { margin-bottom: 30px; }
+    .section h2 { font-size: 18px; margin-bottom: 15px; color: #333; border-bottom: 2px solid #667eea; padding-bottom: 10px; }
+    label { display: block; margin-bottom: 8px; font-weight: 500; color: #444; }
+    input[type="checkbox"] { margin-right: 8px; }
+    .checkbox-label { display: flex; align-items: center; cursor: pointer; }
+    textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 13px; resize: vertical; }
+    input[type="file"] { width: 100%; margin-bottom: 8px; }
+    button { background: #667eea; color: white; padding: 12px 30px; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; transition: 0.3s; }
+    button:hover { background: #5568d3; }
+    button:disabled { background: #ccc; cursor: not-allowed; }
+    .loading { display: none; text-align: center; margin: 20px 0; }
+    .spinner { border: 3px solid #f3f3f3; border-top: 3px solid #667eea; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .tabs { display: flex; border-bottom: 1px solid #ddd; margin-bottom: 20px; }
+    .tab { padding: 12px 20px; cursor: pointer; border-bottom: 3px solid transparent; transition: 0.3s; }
+    .tab.active { border-bottom-color: #667eea; color: #667eea; font-weight: 500; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    pre { background: #f8f9fa; padding: 15px; border-radius: 4px; overflow-x: auto; font-size: 12px; }
+    .error { color: #d32f2f; padding: 15px; background: #ffebee; border-radius: 4px; margin-bottom: 15px; }
+    .success { color: #388e3c; padding: 15px; background: #e8f5e9; border-radius: 4px; margin-bottom: 15px; }
+    .field-row { margin-bottom: 14px; }
+    .hint { color: #666; font-size: 12px; margin-bottom: 6px; }
+    .status-ok { color: #2e7d32; font-size: 13px; }
+    .status-err { color: #c62828; font-size: 13px; }
+    .disabled { opacity: 0.6; pointer-events: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Multi-Source Candidate Data Transformer</h1>
+      <p class="subtitle">Eightfold Assignment - Node.js Version</p>
+    </header>
+    <main>
+      <form id="transformForm">
+        <div class="section">
+          <h2>Input Configuration</h2>
+          <label class="checkbox-label">
+            <input type="checkbox" id="useSamples" checked>
+            Use bundled sample input files
+          </label>
+          <div id="uploadFields" class="disabled">
+            <div class="field-row">
+              <label for="recruiterCsv">Recruiter CSV (structured)</label>
+              <div class="hint">Required if ATS JSON is not uploaded.</div>
+              <input id="recruiterCsv" type="file" accept=".csv">
+              <div id="recruiterCsvStatus"></div>
+            </div>
+            <div class="field-row">
+              <label for="atsJson">ATS JSON (structured)</label>
+              <div class="hint">Optional if Recruiter CSV is uploaded.</div>
+              <input id="atsJson" type="file" accept=".json">
+              <div id="atsJsonStatus"></div>
+            </div>
+            <div class="field-row">
+              <label for="notesTxt">Notes TXT (unstructured)</label>
+              <div class="hint">Required when using uploaded files.</div>
+              <input id="notesTxt" type="file" accept=".txt">
+              <div id="notesTxtStatus"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Custom Projection Config</h2>
+          <label>Edit JSON config (leave empty to use default schema)</label>
+          <textarea id="configJson" rows="10" placeholder="Paste custom config JSON here..."><%- sampleConfig %></textarea>
+        </div>
+
+        <button type="submit">Run Transformer</button>
+      </form>
+
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Processing...</p>
+      </div>
+
+      <div id="results"></div>
+    </main>
+  </div>
+
+  <script>
+    const useSamplesEl = document.getElementById('useSamples');
+    const uploadFieldsEl = document.getElementById('uploadFields');
+    const recruiterCsvEl = document.getElementById('recruiterCsv');
+    const atsJsonEl = document.getElementById('atsJson');
+    const notesTxtEl = document.getElementById('notesTxt');
+
+    function setStatus(id, ok, message) {
+      const el = document.getElementById(id);
+      if (!message) {
+        el.innerHTML = '';
+        return;
+      }
+      el.className = ok ? 'status-ok' : 'status-err';
+      el.textContent = message;
+    }
+
+    async function validateFile(kind, file, statusId) {
+      if (!file) {
+        setStatus(statusId, false, 'No file selected.');
+        return false;
+      }
+      const fd = new FormData();
+      fd.append('kind', kind);
+      fd.append('file', file);
+      const resp = await fetch('/validate-upload', { method: 'POST', body: fd });
+      const data = await resp.json();
+      setStatus(statusId, data.ok, data.message);
+      return Boolean(data.ok);
+    }
+
+    function toggleUploadState() {
+      const useSamples = useSamplesEl.checked;
+      uploadFieldsEl.classList.toggle('disabled', useSamples);
+      recruiterCsvEl.disabled = useSamples;
+      atsJsonEl.disabled = useSamples;
+      notesTxtEl.disabled = useSamples;
+      if (useSamples) {
+        setStatus('recruiterCsvStatus', true, 'Using bundled sample files.');
+        setStatus('atsJsonStatus', true, 'Using bundled sample files.');
+        setStatus('notesTxtStatus', true, 'Using bundled sample files.');
+      } else {
+        setStatus('recruiterCsvStatus', false, 'Upload .csv file.');
+        setStatus('atsJsonStatus', false, 'Upload .json file (optional).');
+        setStatus('notesTxtStatus', false, 'Upload .txt file.');
+      }
+    }
+
+    useSamplesEl.addEventListener('change', toggleUploadState);
+    recruiterCsvEl.addEventListener('change', () => validateFile('recruiterCsv', recruiterCsvEl.files[0], 'recruiterCsvStatus'));
+    atsJsonEl.addEventListener('change', () => validateFile('atsJson', atsJsonEl.files[0], 'atsJsonStatus'));
+    notesTxtEl.addEventListener('change', () => validateFile('notesTxt', notesTxtEl.files[0], 'notesTxtStatus'));
+    toggleUploadState();
+
+    document.getElementById('transformForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const loading = document.getElementById('loading');
+      const results = document.getElementById('results');
+      
+      loading.style.display = 'block';
+      results.innerHTML = '';
+
+      try {
+        if (!useSamplesEl.checked) {
+          const recruiterFile = recruiterCsvEl.files[0];
+          const atsFile = atsJsonEl.files[0];
+          const notesFile = notesTxtEl.files[0];
+          const hasStructured = Boolean(recruiterFile || atsFile);
+          if (!hasStructured || !notesFile) {
+            loading.style.display = 'none';
+            results.innerHTML = '<div class="error"><strong>Error:</strong> Upload at least one structured file (CSV or JSON) and notes TXT.</div>';
+            return;
+          }
+        }
+
+        const formData = new FormData();
+        formData.append('useSamples', useSamplesEl.checked ? 'true' : 'false');
+        formData.append('configJson', document.getElementById('configJson').value);
+        if (!useSamplesEl.checked) {
+          if (recruiterCsvEl.files[0]) formData.append('recruiterCsv', recruiterCsvEl.files[0]);
+          if (atsJsonEl.files[0]) formData.append('atsJson', atsJsonEl.files[0]);
+          if (notesTxtEl.files[0]) formData.append('notesTxt', notesTxtEl.files[0]);
+        }
+
+        const response = await fetch('/transform', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const data = await response.json();
+        loading.style.display = 'none';
+
+        if (data.error) {
+          results.innerHTML = `<div class="error"><strong>Error:</strong> ${data.error}</div>`;
+          return;
+        }
+
+        const html = `
+          <div class="tabs">
+            <div class="tab active" onclick="switchTab(this, 'projected')">Projected Output</div>
+            <div class="tab" onclick="switchTab(this, 'canonical')">Canonical Record</div>
+            <div class="tab" onclick="switchTab(this, 'validation')">Validation</div>
+          </div>
+          <div id="projected" class="tab-content active">
+            <pre>${JSON.stringify(data.projected, null, 2)}</pre>
+            <button onclick="downloadJson(${JSON.stringify(data.projected).replace(/"/g, '&quot;')}, 'projected_output.json')">Download JSON</button>
+          </div>
+          <div id="canonical" class="tab-content">
+            <pre>${JSON.stringify(data.canonical, null, 2)}</pre>
+          </div>
+          <div id="validation" class="tab-content">
+            ${data.validation_errors && data.validation_errors.length > 0
+              ? `<div class="error"><strong>Validation failed:</strong><ul>${data.validation_errors.map(e => `<li>${e}</li>`).join('')}</ul></div>`
+              : '<div class="success"><strong>Validation passed!</strong></div>'
+            }
+          </div>
+        `;
+        results.innerHTML = html;
+      } catch (err) {
+        loading.style.display = 'none';
+        results.innerHTML = `<div class="error"><strong>Error:</strong> ${err.message}</div>`;
+      }
+    });
+
+    function switchTab(elem, tabName) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      elem.classList.add('active');
+      document.getElementById(tabName).classList.add('active');
+    }
+
+    function downloadJson(data, filename) {
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>

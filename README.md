@@ -8,34 +8,41 @@ This project implements an end-to-end candidate profile transformer with:
 - Provenance and confidence tracking
 - Runtime configurable output projection
 - Validation for default and custom outputs
-- Minimal **Streamlit UI** and **CLI**
+- Minimal **Express UI** and **CLI**
 - Tests for core + edge cases
 
 ## Project structure
 
-- [src/pipeline.py](src/pipeline.py): orchestration
-- [src/extractors.py](src/extractors.py): source adapters
-- [src/normalizers.py](src/normalizers.py): format normalization
-- [src/merger.py](src/merger.py): merge/confidence/provenance
-- [src/projector.py](src/projector.py): runtime output projection
-- [src/validator.py](src/validator.py): schema/type validation
-- [run_pipeline.py](run_pipeline.py): CLI entrypoint
-- [app.py](app.py): Streamlit UI
+- [src/pipeline.ts](src/pipeline.ts): orchestration
+- [src/extractors.ts](src/extractors.ts): source adapters
+- [src/normalizers.ts](src/normalizers.ts): format normalization
+- [src/merger.ts](src/merger.ts): merge/confidence/provenance
+- [src/projector.ts](src/projector.ts): runtime output projection
+- [src/validator.ts](src/validator.ts): schema/type validation
+- [src/run_pipeline.ts](src/run_pipeline.ts): CLI entrypoint
+- [src/ui/server.ts](src/ui/server.ts): web UI server
+- [src/ui/views/index.ejs](src/ui/views/index.ejs): UI page
 - [docs/technical_design_one_pager.md](docs/technical_design_one_pager.md): one-page design
 - [docs/PriyaNJ_priya@example.com_Eightfold.pdf](docs/PriyaNJ_priya@example.com_Eightfold.pdf): generated design PDF
 
 ## Install
 
 ```bash
-pip install -r requirements.txt
+npm install
 ```
 
 ## Run (CLI)
 
+Build first:
+
+```bash
+npm run build
+```
+
 Default schema output:
 
 ```bash
-python run_pipeline.py \
+npm run cli -- \
   --recruiter-csv data/samples/recruiter_export.csv \
   --ats-json data/samples/ats_blob.json \
   --notes data/samples/recruiter_notes.txt \
@@ -45,7 +52,7 @@ python run_pipeline.py \
 Custom config output:
 
 ```bash
-python run_pipeline.py \
+npm run cli -- \
   --recruiter-csv data/samples/recruiter_export.csv \
   --ats-json data/samples/ats_blob.json \
   --notes data/samples/recruiter_notes.txt \
@@ -56,21 +63,23 @@ python run_pipeline.py \
 ## Run (UI)
 
 ```bash
-streamlit run app.py
+npm run ui
 ```
 
-Use bundled samples or upload your own files. You can edit custom config directly in UI.
+Open the URL printed in terminal (3000 or next free port).
 
-## Generate one-page PDF
+UI supports:
+- bundled sample mode, or
+- manual file uploads for `Recruiter CSV`, `ATS JSON`, and `Notes TXT`.
 
-```bash
-python docs/generate_design_pdf.py
-```
+Each uploaded file is validated immediately after selection.
+
+One-page design deliverable is available at [docs/PriyaNJ_priya@example.com_Eightfold.pdf](docs/PriyaNJ_priya@example.com_Eightfold.pdf).
 
 ## Run tests
 
 ```bash
-pytest -q
+npm test
 ```
 
 ## Notes / assumptions

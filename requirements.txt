@@ -1,5 +1,0 @@
-streamlit
-phonenumbers
-jsonschema
-reportlab
-pytest
