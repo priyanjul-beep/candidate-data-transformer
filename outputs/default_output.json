@@ -1,0 +1,199 @@
+{
+  "candidate_id": "candidate-001",
+  "full_name": "Priya N J",
+  "emails": [
+    "priya@example.com",
+    "priya.nj@altmail.com"
+  ],
+  "phones": [
+    "+14155550101"
+  ],
+  "location": {
+    "city": "San Francisco",
+    "region": "California",
+    "country": "US"
+  },
+  "links": {
+    "linkedin": "https://www.linkedin.com/in/priyanjul",
+    "github": "https://github.com/priyanjul",
+    "portfolio": null,
+    "other": []
+  },
+  "headline": "Senior ML Engineer",
+  "years_experience": 6.0,
+  "skills": [
+    {
+      "name": "docker",
+      "confidence": 0.85,
+      "sources": [
+        "ats_json",
+        "notes_txt"
+      ]
+    },
+    {
+      "name": "machine learning",
+      "confidence": 0.85,
+      "sources": [
+        "ats_json",
+        "notes_txt"
+      ]
+    },
+    {
+      "name": "postgresql",
+      "confidence": 0.85,
+      "sources": [
+        "ats_json"
+      ]
+    },
+    {
+      "name": "python",
+      "confidence": 0.85,
+      "sources": [
+        "recruiter_csv",
+        "ats_json",
+        "notes_txt"
+      ]
+    },
+    {
+      "name": "aws",
+      "confidence": 0.8,
+      "sources": [
+        "recruiter_csv",
+        "notes_txt"
+      ]
+    },
+    {
+      "name": "natural language processing",
+      "confidence": 0.8,
+      "sources": [
+        "recruiter_csv",
+        "notes_txt"
+      ]
+    },
+    {
+      "name": "sql",
+      "confidence": 0.8,
+      "sources": [
+        "recruiter_csv",
+        "notes_txt"
+      ]
+    },
+    {
+      "name": "kubernetes",
+      "confidence": 0.62,
+      "sources": [
+        "notes_txt"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "company": "Acme AI",
+      "title": "Senior ML Engineer",
+      "start": null,
+      "end": null,
+      "summary": "Current role from recruiter export"
+    },
+    {
+      "company": "Acme AI",
+      "title": "Senior ML Engineer",
+      "start": "2022-03",
+      "end": null,
+      "summary": "Built ranking and matching models"
+    },
+    {
+      "company": "DataWorks",
+      "title": "ML Engineer",
+      "start": "2019-01",
+      "end": "2022-02",
+      "summary": "Shipped NLP services"
+    }
+  ],
+  "education": [
+    {
+      "institution": "IIT Bombay",
+      "degree": "B.Tech",
+      "field": "Computer Science",
+      "start_year": 2014,
+      "end_year": 2018
+    }
+  ],
+  "overall_confidence": 0.8208,
+  "provenance": [
+    {
+      "field": "full_name",
+      "source": "recruiter_csv",
+      "method": "column:name"
+    },
+    {
+      "field": "headline",
+      "source": "recruiter_csv",
+      "method": "column:title"
+    },
+    {
+      "field": "years_experience",
+      "source": "ats_json",
+      "method": "field:yearsExp"
+    },
+    {
+      "field": "emails",
+      "source": "recruiter_csv",
+      "method": "column:email"
+    },
+    {
+      "field": "phones",
+      "source": "recruiter_csv",
+      "method": "column:phone"
+    },
+    {
+      "field": "location.city",
+      "source": "recruiter_csv",
+      "method": "parse_location"
+    },
+    {
+      "field": "location.region",
+      "source": "recruiter_csv",
+      "method": "parse_location"
+    },
+    {
+      "field": "location.country",
+      "source": "recruiter_csv",
+      "method": "parse_location"
+    },
+    {
+      "field": "links.linkedin",
+      "source": "ats_json",
+      "method": "field:links.linkedin"
+    },
+    {
+      "field": "links.github",
+      "source": "ats_json",
+      "method": "field:links.github"
+    },
+    {
+      "field": "skills",
+      "source": "multi",
+      "method": "canonical_merge"
+    },
+    {
+      "field": "experience",
+      "source": "recruiter_csv",
+      "method": "row_to_experience"
+    },
+    {
+      "field": "experience",
+      "source": "ats_json",
+      "method": "field:experience"
+    },
+    {
+      "field": "experience",
+      "source": "ats_json",
+      "method": "field:experience"
+    },
+    {
+      "field": "education",
+      "source": "ats_json",
+      "method": "field:education"
+    }
+  ]
+}

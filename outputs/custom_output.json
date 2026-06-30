@@ -1,0 +1,95 @@
+{
+  "full_name": "Priya N J",
+  "primary_email": "priya@example.com",
+  "phone": "+14155550101",
+  "skills": [
+    "docker",
+    "machine learning",
+    "postgresql",
+    "python",
+    "aws",
+    "natural language processing",
+    "sql",
+    "kubernetes"
+  ],
+  "github": "https://github.com/priyanjul",
+  "years_experience": 6.0,
+  "overall_confidence": 0.8208,
+  "provenance": [
+    {
+      "field": "full_name",
+      "source": "recruiter_csv",
+      "method": "column:name"
+    },
+    {
+      "field": "headline",
+      "source": "recruiter_csv",
+      "method": "column:title"
+    },
+    {
+      "field": "years_experience",
+      "source": "ats_json",
+      "method": "field:yearsExp"
+    },
+    {
+      "field": "emails",
+      "source": "recruiter_csv",
+      "method": "column:email"
+    },
+    {
+      "field": "phones",
+      "source": "recruiter_csv",
+      "method": "column:phone"
+    },
+    {
+      "field": "location.city",
+      "source": "recruiter_csv",
+      "method": "parse_location"
+    },
+    {
+      "field": "location.region",
+      "source": "recruiter_csv",
+      "method": "parse_location"
+    },
+    {
+      "field": "location.country",
+      "source": "recruiter_csv",
+      "method": "parse_location"
+    },
+    {
+      "field": "links.linkedin",
+      "source": "ats_json",
+      "method": "field:links.linkedin"
+    },
+    {
+      "field": "links.github",
+      "source": "ats_json",
+      "method": "field:links.github"
+    },
+    {
+      "field": "skills",
+      "source": "multi",
+      "method": "canonical_merge"
+    },
+    {
+      "field": "experience",
+      "source": "recruiter_csv",
+      "method": "row_to_experience"
+    },
+    {
+      "field": "experience",
+      "source": "ats_json",
+      "method": "field:experience"
+    },
+    {
+      "field": "experience",
+      "source": "ats_json",
+      "method": "field:experience"
+    },
+    {
+      "field": "education",
+      "source": "ats_json",
+      "method": "field:education"
+    }
+  ]
+}

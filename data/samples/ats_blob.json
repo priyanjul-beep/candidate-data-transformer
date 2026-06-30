@@ -1,0 +1,36 @@
+{
+  "fullName": "Priya N. J",
+  "primaryEmail": "priya@example.com",
+  "phoneNumber": "+1 415 555 0101",
+  "yearsExp": 6,
+  "links": {
+    "github": "https://github.com/priyanjul",
+    "linkedin": "https://www.linkedin.com/in/priyanjul"
+  },
+  "skills": ["Python", "Machine Learning", "Postgres", "Docker"],
+  "experience": [
+    {
+      "company": "Acme AI",
+      "title": "Senior ML Engineer",
+      "start": "2022-03",
+      "end": "Present",
+      "summary": "Built ranking and matching models"
+    },
+    {
+      "company": "DataWorks",
+      "title": "ML Engineer",
+      "start": "2019-01",
+      "end": "2022-02",
+      "summary": "Shipped NLP services"
+    }
+  ],
+  "education": [
+    {
+      "institution": "IIT Bombay",
+      "degree": "B.Tech",
+      "field": "Computer Science",
+      "start_year": 2014,
+      "end_year": 2018
+    }
+  ]
+}
