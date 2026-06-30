@@ -63,6 +63,8 @@ streamlit run app.py
 
 Open browser to `http://localhost:8501` (or next available port).
 
+Live app: [https://candidate-data-transformer-sn4wmpxrabbdhbsrqbbbfg.streamlit.app](https://candidate-data-transformer-sn4wmpxrabbdhbsrqbbbfg.streamlit.app)
+
 ### UI Features
 
 **Input Mode Selection:**
