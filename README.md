@@ -25,8 +25,6 @@ This project implements an end-to-end candidate profile transformer with:
 - [app.py](app.py): Streamlit UI with interactive projection modal
 - [run_pipeline.py](run_pipeline.py): CLI entrypoint
 - [data/samples/](data/samples/): bundled sample files and custom config template
-- [docs/technical_design_one_pager.md](docs/technical_design_one_pager.md): architecture overview
-- [docs/PriyaNJ_priya@example.com_Eightfold.pdf](docs/PriyaNJ_priya@example.com_Eightfold.pdf): design PDF
 
 ## Install
 
@@ -88,8 +86,6 @@ Open browser to `http://localhost:8501` (or next available port).
 - Edit "Custom Projection Config" JSON to manually control field mappings
 - If empty, default schema is used
 - Used when clicking "Skip" in projection modal
-
-Design documentation available at [docs/PriyaNJ_priya@example.com_Eightfold.pdf](docs/PriyaNJ_priya@example.com_Eightfold.pdf).
 
 ## Custom Config JSON
 
