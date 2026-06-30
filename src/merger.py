@@ -117,10 +117,14 @@ def merge_evidence(evidences: list[Evidence], candidate_id: str = "candidate-001
 
     # Skills - canonicalized and merged.
     skill_bucket: dict[str, dict[str, Any]] = {}
+    skill_sources: set[str] = set()
+    skill_methods: set[str] = set()
     for e in by_field.get("skills", []):
         name = normalize_skill(str(e.value))
         if not name:
             continue
+        skill_sources.add(e.source)
+        skill_methods.add(e.method)
         existing = skill_bucket.get(name)
         if not existing:
             skill_bucket[name] = {
@@ -135,7 +139,9 @@ def merge_evidence(evidences: list[Evidence], candidate_id: str = "candidate-001
     profile["skills"] = sorted(skill_bucket.values(), key=lambda x: (-x["confidence"], x["name"]))
     if profile["skills"]:
         confidence_parts.append(sum(x["confidence"] for x in profile["skills"]) / len(profile["skills"]))
-        provenance.append({"field": "skills", "source": "multi", "method": "canonical_merge"})
+        skill_source = next(iter(skill_sources)) if len(skill_sources) == 1 else "multi"
+        skill_method = next(iter(skill_methods)) if len(skill_methods) == 1 else "canonical_merge"
+        provenance.append({"field": "skills", "source": skill_source, "method": skill_method})
 
     # Experience.
     exp_values = []

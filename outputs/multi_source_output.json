@@ -1,0 +1,706 @@
+[
+  {
+    "candidate_id": "candidate-001",
+    "full_name": "Priya ",
+    "emails": [
+      "priya@example.com"
+    ],
+    "phones": [
+      "+14155550101"
+    ],
+    "location": {
+      "city": "San Francisco",
+      "region": "California",
+      "country": "US"
+    },
+    "links": {
+      "linkedin": "https://www.linkedin.com/in/priyanjul",
+      "github": "https://github.com/priyanjul",
+      "portfolio": null,
+      "other": []
+    },
+    "headline": "Senior ML Engineer",
+    "years_experience": 6.0,
+    "skills": [
+      {
+        "name": "docker",
+        "confidence": 0.85,
+        "sources": [
+          "ats_json"
+        ]
+      },
+      {
+        "name": "machine learning",
+        "confidence": 0.85,
+        "sources": [
+          "ats_json"
+        ]
+      },
+      {
+        "name": "postgresql",
+        "confidence": 0.85,
+        "sources": [
+          "ats_json"
+        ]
+      },
+      {
+        "name": "python",
+        "confidence": 0.85,
+        "sources": [
+          "recruiter_csv",
+          "ats_json"
+        ]
+      },
+      {
+        "name": "aws",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      },
+      {
+        "name": "natural language processing",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      },
+      {
+        "name": "sql",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "company": "Acme AI",
+        "title": "Senior ML Engineer",
+        "start": null,
+        "end": null,
+        "summary": "Current role from recruiter export"
+      },
+      {
+        "company": "Acme AI",
+        "title": "Senior ML Engineer",
+        "start": "2022-03",
+        "end": null,
+        "summary": "Built ranking and matching models"
+      },
+      {
+        "company": "DataWorks",
+        "title": "ML Engineer",
+        "start": "2019-01",
+        "end": "2022-02",
+        "summary": "Shipped NLP services"
+      }
+    ],
+    "education": [
+      {
+        "institution": "IIT Bombay",
+        "degree": "B.Tech",
+        "field": "Computer Science",
+        "start_year": 2014,
+        "end_year": 2018
+      }
+    ],
+    "overall_confidence": 0.8226,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "recruiter_csv",
+        "method": "column:name"
+      },
+      {
+        "field": "headline",
+        "source": "recruiter_csv",
+        "method": "column:title"
+      },
+      {
+        "field": "years_experience",
+        "source": "ats_json",
+        "method": "field:yearsExp"
+      },
+      {
+        "field": "emails",
+        "source": "recruiter_csv",
+        "method": "column:email"
+      },
+      {
+        "field": "phones",
+        "source": "recruiter_csv",
+        "method": "column:phone"
+      },
+      {
+        "field": "location.city",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "location.region",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "location.country",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "links.linkedin",
+        "source": "ats_json",
+        "method": "field:links.linkedin"
+      },
+      {
+        "field": "links.github",
+        "source": "ats_json",
+        "method": "field:links.github"
+      },
+      {
+        "field": "skills",
+        "source": "multi",
+        "method": "canonical_merge"
+      },
+      {
+        "field": "experience",
+        "source": "recruiter_csv",
+        "method": "row_to_experience"
+      },
+      {
+        "field": "experience",
+        "source": "ats_json",
+        "method": "field:experience"
+      },
+      {
+        "field": "experience",
+        "source": "ats_json",
+        "method": "field:experience"
+      },
+      {
+        "field": "education",
+        "source": "ats_json",
+        "method": "field:education"
+      }
+    ]
+  },
+  {
+    "candidate_id": "candidate-002",
+    "full_name": "Priyanjul",
+    "emails": [
+      "priyanjul@example.com"
+    ],
+    "phones": [
+      "+14155550102"
+    ],
+    "location": {
+      "city": "San Francisco",
+      "region": "California",
+      "country": "US"
+    },
+    "links": {
+      "linkedin": "https://www.linkedin.com/in/priyanjul",
+      "github": "https://github.com/priyanjul",
+      "portfolio": null,
+      "other": []
+    },
+    "headline": "Senior ML Engineer",
+    "years_experience": 5.0,
+    "skills": [
+      {
+        "name": "docker",
+        "confidence": 0.85,
+        "sources": [
+          "ats_json"
+        ]
+      },
+      {
+        "name": "kubernetes",
+        "confidence": 0.85,
+        "sources": [
+          "ats_json"
+        ]
+      },
+      {
+        "name": "machine learning",
+        "confidence": 0.85,
+        "sources": [
+          "ats_json"
+        ]
+      },
+      {
+        "name": "python",
+        "confidence": 0.85,
+        "sources": [
+          "recruiter_csv",
+          "ats_json"
+        ]
+      },
+      {
+        "name": "aws",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      },
+      {
+        "name": "natural language processing",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      },
+      {
+        "name": "sql",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "company": "Acme AI",
+        "title": "Senior ML Engineer",
+        "start": null,
+        "end": null,
+        "summary": "Current role from recruiter export"
+      },
+      {
+        "company": "Acme AI",
+        "title": "Senior ML Engineer",
+        "start": "2022-03",
+        "end": null,
+        "summary": "Built ranking and matching models"
+      }
+    ],
+    "education": [
+      {
+        "institution": "IIT Delhi",
+        "degree": "B.Tech",
+        "field": "Computer Science",
+        "start_year": 2015,
+        "end_year": 2019
+      }
+    ],
+    "overall_confidence": 0.8242,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "recruiter_csv",
+        "method": "column:name"
+      },
+      {
+        "field": "headline",
+        "source": "recruiter_csv",
+        "method": "column:title"
+      },
+      {
+        "field": "years_experience",
+        "source": "ats_json",
+        "method": "field:yearsExp"
+      },
+      {
+        "field": "emails",
+        "source": "recruiter_csv",
+        "method": "column:email"
+      },
+      {
+        "field": "phones",
+        "source": "recruiter_csv",
+        "method": "column:phone"
+      },
+      {
+        "field": "location.city",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "location.region",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "location.country",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "links.linkedin",
+        "source": "ats_json",
+        "method": "field:links.linkedin"
+      },
+      {
+        "field": "links.github",
+        "source": "ats_json",
+        "method": "field:links.github"
+      },
+      {
+        "field": "skills",
+        "source": "multi",
+        "method": "canonical_merge"
+      },
+      {
+        "field": "experience",
+        "source": "recruiter_csv",
+        "method": "row_to_experience"
+      },
+      {
+        "field": "experience",
+        "source": "ats_json",
+        "method": "field:experience"
+      },
+      {
+        "field": "education",
+        "source": "ats_json",
+        "method": "field:education"
+      }
+    ]
+  },
+  {
+    "candidate_id": "candidate-003",
+    "full_name": "Pavan",
+    "emails": [
+      "pavan@example.com"
+    ],
+    "phones": [
+      "+14155550103"
+    ],
+    "location": {
+      "city": "San Francisco",
+      "region": "California",
+      "country": "US"
+    },
+    "links": {
+      "linkedin": "https://www.linkedin.com/in/pavan",
+      "github": "https://github.com/pavan",
+      "portfolio": null,
+      "other": []
+    },
+    "headline": "Senior ML Engineer",
+    "years_experience": 7.0,
+    "skills": [
+      {
+        "name": "aws",
+        "confidence": 0.85,
+        "sources": [
+          "recruiter_csv",
+          "ats_json"
+        ]
+      },
+      {
+        "name": "machine learning",
+        "confidence": 0.85,
+        "sources": [
+          "ats_json"
+        ]
+      },
+      {
+        "name": "python",
+        "confidence": 0.85,
+        "sources": [
+          "recruiter_csv",
+          "ats_json"
+        ]
+      },
+      {
+        "name": "sql",
+        "confidence": 0.85,
+        "sources": [
+          "recruiter_csv",
+          "ats_json"
+        ]
+      },
+      {
+        "name": "natural language processing",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "company": "Acme AI",
+        "title": "Senior ML Engineer",
+        "start": null,
+        "end": null,
+        "summary": "Current role from recruiter export"
+      },
+      {
+        "company": "Acme AI",
+        "title": "Senior ML Engineer",
+        "start": "2022-03",
+        "end": null,
+        "summary": "Built ranking and matching models"
+      },
+      {
+        "company": "TechCorp",
+        "title": "ML Engineer",
+        "start": "2018-05",
+        "end": "2022-02",
+        "summary": "Developed ML pipelines"
+      }
+    ],
+    "education": [
+      {
+        "institution": "Stanford University",
+        "degree": "B.S.",
+        "field": "Computer Science",
+        "start_year": 2013,
+        "end_year": 2017
+      }
+    ],
+    "overall_confidence": 0.8233,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "recruiter_csv",
+        "method": "column:name"
+      },
+      {
+        "field": "headline",
+        "source": "recruiter_csv",
+        "method": "column:title"
+      },
+      {
+        "field": "years_experience",
+        "source": "ats_json",
+        "method": "field:yearsExp"
+      },
+      {
+        "field": "emails",
+        "source": "recruiter_csv",
+        "method": "column:email"
+      },
+      {
+        "field": "phones",
+        "source": "recruiter_csv",
+        "method": "column:phone"
+      },
+      {
+        "field": "location.city",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "location.region",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "location.country",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "links.linkedin",
+        "source": "ats_json",
+        "method": "field:links.linkedin"
+      },
+      {
+        "field": "links.github",
+        "source": "ats_json",
+        "method": "field:links.github"
+      },
+      {
+        "field": "skills",
+        "source": "multi",
+        "method": "canonical_merge"
+      },
+      {
+        "field": "experience",
+        "source": "recruiter_csv",
+        "method": "row_to_experience"
+      },
+      {
+        "field": "experience",
+        "source": "ats_json",
+        "method": "field:experience"
+      },
+      {
+        "field": "experience",
+        "source": "ats_json",
+        "method": "field:experience"
+      },
+      {
+        "field": "education",
+        "source": "ats_json",
+        "method": "field:education"
+      }
+    ]
+  },
+  {
+    "candidate_id": "candidate-004",
+    "full_name": "Swapnil",
+    "emails": [
+      "swapnil@example.com"
+    ],
+    "phones": [
+      "+14155550104"
+    ],
+    "location": {
+      "city": "San Francisco",
+      "region": "California",
+      "country": "US"
+    },
+    "links": {
+      "linkedin": "https://www.linkedin.com/in/swapnil",
+      "github": "https://github.com/swapnil",
+      "portfolio": null,
+      "other": []
+    },
+    "headline": "Senior ML Engineer",
+    "years_experience": 4.0,
+    "skills": [
+      {
+        "name": "docker",
+        "confidence": 0.85,
+        "sources": [
+          "ats_json"
+        ]
+      },
+      {
+        "name": "machine learning",
+        "confidence": 0.85,
+        "sources": [
+          "ats_json"
+        ]
+      },
+      {
+        "name": "postgresql",
+        "confidence": 0.85,
+        "sources": [
+          "ats_json"
+        ]
+      },
+      {
+        "name": "python",
+        "confidence": 0.85,
+        "sources": [
+          "recruiter_csv",
+          "ats_json"
+        ]
+      },
+      {
+        "name": "aws",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      },
+      {
+        "name": "natural language processing",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      },
+      {
+        "name": "sql",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "company": "Acme AI",
+        "title": "Senior ML Engineer",
+        "start": null,
+        "end": null,
+        "summary": "Current role from recruiter export"
+      },
+      {
+        "company": "Acme AI",
+        "title": "Senior ML Engineer",
+        "start": "2022-03",
+        "end": null,
+        "summary": "Built ranking and matching models"
+      }
+    ],
+    "education": [
+      {
+        "institution": "IIT Bombay",
+        "degree": "B.Tech",
+        "field": "Computer Science",
+        "start_year": 2014,
+        "end_year": 2018
+      }
+    ],
+    "overall_confidence": 0.8242,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "recruiter_csv",
+        "method": "column:name"
+      },
+      {
+        "field": "headline",
+        "source": "recruiter_csv",
+        "method": "column:title"
+      },
+      {
+        "field": "years_experience",
+        "source": "ats_json",
+        "method": "field:yearsExp"
+      },
+      {
+        "field": "emails",
+        "source": "recruiter_csv",
+        "method": "column:email"
+      },
+      {
+        "field": "phones",
+        "source": "recruiter_csv",
+        "method": "column:phone"
+      },
+      {
+        "field": "location.city",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "location.region",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "location.country",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "links.linkedin",
+        "source": "ats_json",
+        "method": "field:links.linkedin"
+      },
+      {
+        "field": "links.github",
+        "source": "ats_json",
+        "method": "field:links.github"
+      },
+      {
+        "field": "skills",
+        "source": "multi",
+        "method": "canonical_merge"
+      },
+      {
+        "field": "experience",
+        "source": "recruiter_csv",
+        "method": "row_to_experience"
+      },
+      {
+        "field": "experience",
+        "source": "ats_json",
+        "method": "field:experience"
+      },
+      {
+        "field": "education",
+        "source": "ats_json",
+        "method": "field:education"
+      }
+    ]
+  }
+]

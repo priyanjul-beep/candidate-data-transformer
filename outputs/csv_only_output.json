@@ -1,0 +1,446 @@
+[
+  {
+    "candidate_id": "candidate-001",
+    "full_name": "Priya ",
+    "emails": [
+      "priya@example.com"
+    ],
+    "phones": [
+      "+14155550101"
+    ],
+    "location": {
+      "city": "San Francisco",
+      "region": "California",
+      "country": "US"
+    },
+    "links": {
+      "linkedin": null,
+      "github": null,
+      "portfolio": null,
+      "other": []
+    },
+    "headline": "Senior ML Engineer",
+    "years_experience": null,
+    "skills": [
+      {
+        "name": "aws",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      },
+      {
+        "name": "natural language processing",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      },
+      {
+        "name": "python",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      },
+      {
+        "name": "sql",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "company": "Acme AI",
+        "title": "Senior ML Engineer",
+        "start": null,
+        "end": null,
+        "summary": "Current role from recruiter export"
+      }
+    ],
+    "education": [],
+    "overall_confidence": 0.8278,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "recruiter_csv",
+        "method": "column:name"
+      },
+      {
+        "field": "headline",
+        "source": "recruiter_csv",
+        "method": "column:title"
+      },
+      {
+        "field": "emails",
+        "source": "recruiter_csv",
+        "method": "column:email"
+      },
+      {
+        "field": "phones",
+        "source": "recruiter_csv",
+        "method": "column:phone"
+      },
+      {
+        "field": "location.city",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "location.region",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "location.country",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "skills",
+        "source": "multi",
+        "method": "canonical_merge"
+      },
+      {
+        "field": "experience",
+        "source": "recruiter_csv",
+        "method": "row_to_experience"
+      }
+    ]
+  },
+  {
+    "candidate_id": "candidate-002",
+    "full_name": "Priyanjul",
+    "emails": [
+      "priyanjul@example.com"
+    ],
+    "phones": [
+      "+14155550102"
+    ],
+    "location": {
+      "city": "San Francisco",
+      "region": "California",
+      "country": "US"
+    },
+    "links": {
+      "linkedin": null,
+      "github": null,
+      "portfolio": null,
+      "other": []
+    },
+    "headline": "Senior ML Engineer",
+    "years_experience": null,
+    "skills": [
+      {
+        "name": "aws",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      },
+      {
+        "name": "natural language processing",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      },
+      {
+        "name": "python",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      },
+      {
+        "name": "sql",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "company": "Acme AI",
+        "title": "Senior ML Engineer",
+        "start": null,
+        "end": null,
+        "summary": "Current role from recruiter export"
+      }
+    ],
+    "education": [],
+    "overall_confidence": 0.8278,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "recruiter_csv",
+        "method": "column:name"
+      },
+      {
+        "field": "headline",
+        "source": "recruiter_csv",
+        "method": "column:title"
+      },
+      {
+        "field": "emails",
+        "source": "recruiter_csv",
+        "method": "column:email"
+      },
+      {
+        "field": "phones",
+        "source": "recruiter_csv",
+        "method": "column:phone"
+      },
+      {
+        "field": "location.city",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "location.region",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "location.country",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "skills",
+        "source": "multi",
+        "method": "canonical_merge"
+      },
+      {
+        "field": "experience",
+        "source": "recruiter_csv",
+        "method": "row_to_experience"
+      }
+    ]
+  },
+  {
+    "candidate_id": "candidate-003",
+    "full_name": "Pavan",
+    "emails": [
+      "pavan@example.com"
+    ],
+    "phones": [
+      "+14155550103"
+    ],
+    "location": {
+      "city": "San Francisco",
+      "region": "California",
+      "country": "US"
+    },
+    "links": {
+      "linkedin": null,
+      "github": null,
+      "portfolio": null,
+      "other": []
+    },
+    "headline": "Senior ML Engineer",
+    "years_experience": null,
+    "skills": [
+      {
+        "name": "aws",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      },
+      {
+        "name": "natural language processing",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      },
+      {
+        "name": "python",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      },
+      {
+        "name": "sql",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "company": "Acme AI",
+        "title": "Senior ML Engineer",
+        "start": null,
+        "end": null,
+        "summary": "Current role from recruiter export"
+      }
+    ],
+    "education": [],
+    "overall_confidence": 0.8278,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "recruiter_csv",
+        "method": "column:name"
+      },
+      {
+        "field": "headline",
+        "source": "recruiter_csv",
+        "method": "column:title"
+      },
+      {
+        "field": "emails",
+        "source": "recruiter_csv",
+        "method": "column:email"
+      },
+      {
+        "field": "phones",
+        "source": "recruiter_csv",
+        "method": "column:phone"
+      },
+      {
+        "field": "location.city",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "location.region",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "location.country",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "skills",
+        "source": "multi",
+        "method": "canonical_merge"
+      },
+      {
+        "field": "experience",
+        "source": "recruiter_csv",
+        "method": "row_to_experience"
+      }
+    ]
+  },
+  {
+    "candidate_id": "candidate-004",
+    "full_name": "Swapnil",
+    "emails": [
+      "swapnil@example.com"
+    ],
+    "phones": [
+      "+14155550104"
+    ],
+    "location": {
+      "city": "San Francisco",
+      "region": "California",
+      "country": "US"
+    },
+    "links": {
+      "linkedin": null,
+      "github": null,
+      "portfolio": null,
+      "other": []
+    },
+    "headline": "Senior ML Engineer",
+    "years_experience": null,
+    "skills": [
+      {
+        "name": "aws",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      },
+      {
+        "name": "natural language processing",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      },
+      {
+        "name": "python",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      },
+      {
+        "name": "sql",
+        "confidence": 0.8,
+        "sources": [
+          "recruiter_csv"
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "company": "Acme AI",
+        "title": "Senior ML Engineer",
+        "start": null,
+        "end": null,
+        "summary": "Current role from recruiter export"
+      }
+    ],
+    "education": [],
+    "overall_confidence": 0.8278,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "recruiter_csv",
+        "method": "column:name"
+      },
+      {
+        "field": "headline",
+        "source": "recruiter_csv",
+        "method": "column:title"
+      },
+      {
+        "field": "emails",
+        "source": "recruiter_csv",
+        "method": "column:email"
+      },
+      {
+        "field": "phones",
+        "source": "recruiter_csv",
+        "method": "column:phone"
+      },
+      {
+        "field": "location.city",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "location.region",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "location.country",
+        "source": "recruiter_csv",
+        "method": "parse_location"
+      },
+      {
+        "field": "skills",
+        "source": "multi",
+        "method": "canonical_merge"
+      },
+      {
+        "field": "experience",
+        "source": "recruiter_csv",
+        "method": "row_to_experience"
+      }
+    ]
+  }
+]
