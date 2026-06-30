@@ -5,24 +5,28 @@ This project implements an end-to-end candidate profile transformer with:
 - **Structured sources**: Recruiter CSV, ATS JSON
 - **Unstructured source**: recruiter notes TXT
 - Canonical merge with normalization + dedupe + conflict resolution
-- Provenance and confidence tracking
-- Runtime configurable output projection
-- Validation for default and custom outputs
-- Minimal **Streamlit UI** and **CLI**
-- Tests for core + edge cases
+- Dynamic provenance and confidence tracking (source-aware)
+- Interactive output projection via modal UI
+- Advanced field selection with search, select-all, clear-all
+- Validation for default and custom projections
+- Streamlit UI with dual input modes
+- Python CLI and programmatic API
+- Comprehensive test coverage
 
 ## Project structure
 
 - [src/pipeline.py](src/pipeline.py): orchestration
-- [src/extractors.py](src/extractors.py): source adapters
+- [src/extractors.py](src/extractors.py): source adapters (CSV, JSON, TXT)
 - [src/normalizers.py](src/normalizers.py): format normalization
-- [src/merger.py](src/merger.py): merge/confidence/provenance
+- [src/merger.py](src/merger.py): merge/confidence/provenance with dynamic source tracking
 - [src/projector.py](src/projector.py): runtime output projection
 - [src/validator.py](src/validator.py): schema/type validation
+- [src/models.py](src/models.py): data models (Evidence, canonical profile)
+- [app.py](app.py): Streamlit UI with interactive projection modal
 - [run_pipeline.py](run_pipeline.py): CLI entrypoint
-- [app.py](app.py): Streamlit UI
-- [docs/technical_design_one_pager.md](docs/technical_design_one_pager.md): one-page design
-- [docs/PriyaNJ_priya@example.com_Eightfold.pdf](docs/PriyaNJ_priya@example.com_Eightfold.pdf): generated design PDF
+- [data/samples/](data/samples/): bundled sample files and custom config template
+- [docs/technical_design_one_pager.md](docs/technical_design_one_pager.md): architecture overview
+- [docs/PriyaNJ_priya@example.com_Eightfold.pdf](docs/PriyaNJ_priya@example.com_Eightfold.pdf): design PDF
 
 ## Install
 
@@ -53,29 +57,122 @@ python run_pipeline.py \
   --out outputs/custom_output.json
 ```
 
-## Run (UI)
+## Run (Streamlit UI)
 
 ```bash
 streamlit run app.py
 ```
 
-Use bundled samples or upload your own files. You can edit custom config directly in UI.
+Open browser to `http://localhost:8501` (or next available port).
 
-## Generate one-page PDF
+### UI Features
 
-```bash
-python docs/generate_design_pdf.py
+**Input Mode Selection:**
+- **Bundled sample files** → pre-loads sample data, uploads disabled
+- **Uploaded files** → manual upload of CSV, JSON, TXT sources
+
+**Projection Customization:**
+1. Click "Run Transformer" to generate canonical record
+2. Navigate to "Projected Output" tab
+3. Click "Customize Projected Output" modal opens
+4. Modal shows all canonical record fields as checkboxes
+5. Use search to filter fields dynamically (type-to-search)
+6. Use "Select All" / "Clear All" for batch operations
+7. Choose action:
+   - **Generate Output**: auto-build config from selected fields → project
+   - **Skip**: use JSON editor config → project
+   - **Cancel**: close modal without projection
+8. View projected JSON with full provenance tracking
+
+**JSON Config (Optional):**
+- Edit "Custom Projection Config" JSON to manually control field mappings
+- If empty, default schema is used
+- Used when clicking "Skip" in projection modal
+
+Design documentation available at [docs/PriyaNJ_priya@example.com_Eightfold.pdf](docs/PriyaNJ_priya@example.com_Eightfold.pdf).
+
+## Custom Config JSON
+
+`data/samples/custom_config.json` controls which fields appear in the projected output and how they are transformed. Structure:
+
+```json
+{
+  "fields": [
+    {
+      "path": "output_field_name",
+      "from": "canonical_path_or_index",
+      "type": "string|number|object|string[]|object[]",
+      "normalize": "E164|canonical",
+      "required": true
+    }
+  ],
+  "include_confidence": true,
+  "include_provenance": true,
+  "on_missing": "null|omit|error"
+}
+```
+
+### Field Configuration
+
+- **path** (required): Output field name in projected result
+- **from** (optional): Source path in canonical record (defaults to path)
+  - `emails[0]` → first email
+  - `skills[].name` → extract name from all skills
+  - `links.github` → nested field access
+- **type** (optional): Describes field type for validation
+- **normalize** (optional):
+  - `E164`: normalize phone numbers to international format
+  - `canonical`: normalize skill names
+- **required** (optional): if true, raises error if field is missing
+
+### Global Options
+
+- **include_confidence**: Add overall_confidence to output
+- **include_provenance**: Add provenance array to output
+- **on_missing**: Behavior for missing fields
+  - `null`: include field with null value
+  - `omit`: exclude field from output
+  - `error`: raise error if required field missing
+
+### Example
+
+Input canonical record has:
+- `emails: ["priya@example.com", "priya.j@company.com"]`
+- `skills: [{name: "python", confidence: 0.9}, {name: "aws", confidence: 0.85}]`
+- `links: {github: "https://github.com/priyanjul", linkedin: null}`
+
+With config:
+```json
+{
+  "fields": [
+    {"path": "primary_email", "from": "emails[0]"},
+    {"path": "all_skills", "from": "skills[].name"},
+    {"path": "github_url", "from": "links.github"}
+  ]
+}
+```
+
+Output:
+```json
+{
+  "primary_email": "priya@example.com",
+  "all_skills": ["python", "aws"],
+  "github_url": "https://github.com/priyanjul"
+}
 ```
 
 ## Run tests
 
 ```bash
-pytest -q
+pytest tests/ -v
 ```
 
 ## Notes / assumptions
 
 - Unknown/malformed values become null or are dropped per rules.
 - Missing source never crashes pipeline.
+- Dynamic provenance: skills source reflects actual contributors (single source if only one file provides skills, "multi" if multiple sources)
+- Projection is fully configurable; no field is hardcoded in output
+- Canonical record always includes all raw evidence for maximum transparency
 - The implementation is deterministic for same inputs.
 - Scope intentionally excludes PDF OCR and live API integrations.
